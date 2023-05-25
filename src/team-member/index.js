@@ -7,6 +7,10 @@ registerBlockType('blocks-course/team-member', {
 	description: __('A team member item', 'team-members'),
 	icon: 'admin-users',
 	parent: ['blocks-course/team-members'],
+	supports: {
+		reusable: false,
+		html: false,
+	},
 	attributes: {
 		name: {
 			type: 'string',
