@@ -3,9 +3,9 @@
 	"name": "blocks-course/team-members",
 	"title": "Team Members",
 	"category": "media",
-	"icon": "admin-users",
+	"icon": "groups",
 	"description": "A team members grid.",
-	"keywords": ["Team", "Members"]
+	"keywords": ["Team", "Members"],
 	"supports": {
 		"html": false
 	},
