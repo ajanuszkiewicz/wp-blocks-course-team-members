@@ -7,6 +7,18 @@ registerBlockType('blocks-course/team-member', {
 	description: __('A team member item', 'team-members'),
 	icon: 'admin-users',
 	parent: ['blocks-course/team-members'],
+	attributes: {
+		name: {
+			type: 'string',
+			source: 'html',
+			selector: 'h4',
+		},
+		bio: {
+			type: 'string',
+			source: 'html',
+			selector: 'p',
+		},
+	},
 	edit: Edit,
 	save: () => <p>save</p>,
 });
