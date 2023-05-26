@@ -5,10 +5,17 @@ import {
 	MediaPlaceholder,
 	BlockControls,
 	MediaReplaceFlow,
+	InspectorControls,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
-import { Spinner, withNotices, ToolbarButton } from '@wordpress/components';
+import {
+	Spinner,
+	withNotices,
+	ToolbarButton,
+	PanelBody,
+	TextareaControl,
+} from '@wordpress/components';
 
 function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 	const { name, bio, url, alt, id } = attributes;
@@ -46,6 +53,12 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 		});
 	};
 
+	const onChangeAlt = (newAlt) => {
+		setAttributes({
+			alt: newAlt,
+		});
+	};
+
 	useEffect(() => {
 		if (!id && isBlobURL(url)) {
 			setAttributes({
@@ -66,6 +79,21 @@ function Edit({ attributes, setAttributes, noticeOperations, noticeUI }) {
 
 	return (
 		<>
+			<InspectorControls>
+				<PanelBody title={__('Image Settings', 'team-member')}>
+					{url && !isBlobURL(url) && (
+						<TextareaControl
+							label={__('Alt Text', 'team-member')}
+							value={alt}
+							onChange={onChangeAlt}
+							help={__(
+								'Alternative text describes your image',
+								'team-member'
+							)}
+						/>
+					)}
+				</PanelBody>
+			</InspectorControls>
 			{url && (
 				<BlockControls group="inline">
 					<MediaReplaceFlow
