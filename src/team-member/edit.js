@@ -4,25 +4,51 @@ import {
 	MediaPlaceholder,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { isBlobURL } from '@wordpress/blob';
+import { Spinner } from '@wordpress/components';
 
 export default function Edit({ attributes, setAttributes }) {
-	const { name, bio } = attributes;
+	const { name, bio, url, alt } = attributes;
 	const onChangeName = (newName) => {
 		setAttributes({ name: newName });
 	};
 	const onChangeBio = (newBio) => {
 		setAttributes({ bio: newBio });
 	};
+	const onSelectImage = (image) => {
+		if (!image || !image.url) {
+			setAttributes({ url: undefined, id: undefined, alt: '' });
+			return;
+		}
+		setAttributes({ url: image.url, id: image.id, alt: image.alt });
+	};
+	const onSelectURL = (newURL) => {
+		setAttributes({
+			url: newURL,
+			id: undefined,
+			alt: '',
+		});
+	};
 	return (
 		<div {...useBlockProps()}>
+			{url && (
+				<div
+					className={`wp-block-blocks-course-team-member-img${
+						isBlobURL(url) ? ' is-loading' : ''
+					}`}
+				>
+					<img src={url} alt={alt} />
+					{isBlobURL(url) && <Spinner />}
+				</div>
+			)}
+
 			<MediaPlaceholder
 				icon="admin-users"
-				// eslint-disable-next-line no-console
-				onSelect={(val) => console.log(val)}
-				// eslint-disable-next-line no-console
-				onSelectURL={(val) => console.log(val)}
+				onSelect={onSelectImage}
+				onSelectURL={onSelectURL}
 				accept="image/*"
 				allowedTypes={['image']}
+				disableMediaButtons={url}
 			/>
 			<RichText
 				placeholder={__('Member Name', 'team-member')}
