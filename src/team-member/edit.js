@@ -101,6 +101,13 @@ function Edit({
 		});
 	};
 
+	const addNewSocialItem = () => {
+		setAttributes({
+			socialLinks: [...socialLinks, { icon: 'wordpress', link: '' }],
+		});
+		setSelectedLink(socialLinks.length);
+	};
+
 	const onChangeAlt = (newAlt) => {
 		setAttributes({
 			alt: newAlt,
@@ -255,6 +262,7 @@ function Edit({
 											'Add social link for team member',
 											'team-members'
 										)}
+										onClick={addNewSocialItem}
 									>
 										<Icon icon="plus" />
 									</button>
