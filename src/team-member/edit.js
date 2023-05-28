@@ -116,6 +116,16 @@ function Edit({
 		setAttributes({ socialLinks: socialLinksCopy });
 	};
 
+	const removeSocialIcon = () => {
+		setAttributes({
+			socialLinks: [
+				...socialLinks.slice(0, selectedLink),
+				...socialLinks.slice(selectedLink + 1),
+			],
+		});
+		setSelectedLink();
+	};
+
 	const onChangeAlt = (newAlt) => {
 		setAttributes({
 			alt: newAlt,
@@ -296,7 +306,7 @@ function Edit({
 							}}
 						/>
 						<br />
-						<Button isDestructive>
+						<Button isDestructive onClick={removeSocialIcon}>
 							{__('Remove Link', 'team-members')}
 						</Button>
 					</div>
