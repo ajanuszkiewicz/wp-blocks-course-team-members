@@ -19,5 +19,36 @@
 			"type": "number",
 			"default": 2
 		}
+	},
+	"example": {
+		"attributes": {
+			"columns": 2
+		},
+		"innerBlocks": [
+			{
+				"name": "blocks-course/team-member",
+				"attributes": {
+					"name": "Troy Chaplin",
+					"bio": "A cool dude",
+					"url": "",
+					"socialLinks": [
+						{ "icon": "facebook" },
+						{ "icon": "twitter" }
+					]
+				}
+			},
+			{
+				"name": "blocks-course/team-member",
+				"attributes": {
+					"name": "Troy Chaplin",
+					"bio": "A cool dude",
+					"url": "",
+					"socialLinks": [
+						{ "icon": "facebook" },
+						{ "icon": "twitter" }
+					]
+				}
+			}
+		]
 	}
 }
